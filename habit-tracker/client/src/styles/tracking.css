@@ -1,0 +1,300 @@
+/* client/src/styles/tracking.css */
+/* ─────────────────────────────────────────────────────────────
+   Styles for TrackingPage, StatsBar, TodayCard
+   ─────────────────────────────────────────────────────────────*/
+
+/* ── Page Layout ────────────────────────────────────────────── */
+.tracking-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.tracking-main {
+  flex: 1;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* ── Stats Bar ──────────────────────────────────────────────── */
+.stats-bar {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.stats-bar__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.stats-bar__title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+
+.stats-bar__date {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.stats-bar__percentage {
+  font-size: var(--font-size-3xl);
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+/* ── Progress Bar ───────────────────────────────────────────── */
+.progress-track {
+  height: 10px;
+  background: var(--color-surface-alt);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary), #34d399);
+  border-radius: var(--radius-full);
+  transition: width 0.5s ease;
+  min-width: 4px;
+}
+
+/* ── Stat Pills ─────────────────────────────────────────────── */
+.stats-bar__counts {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.stat-pill {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  border: 1px solid var(--color-border);
+}
+
+.stat-pill span {
+  font-weight: 700;
+  font-size: var(--font-size-base);
+}
+
+.stat-pill--total   { background: var(--color-surface-alt); color: var(--color-text-muted); }
+.stat-pill--done    { background: rgba(52, 211, 153, 0.1); color: #34d399; border-color: rgba(52, 211, 153, 0.3); }
+.stat-pill--pending { background: rgba(251, 191, 36, 0.1);  color: #fbbf24; border-color: rgba(251, 191, 36, 0.3); }
+
+/* ── Congrats Banner ────────────────────────────────────────── */
+.stats-bar__congrats {
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.15), rgba(52, 211, 153, 0.15));
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: #34d399;
+  text-align: center;
+}
+
+/* ── Filter Tabs ────────────────────────────────────────────── */
+.tracking-tabs {
+  display: flex;
+  gap: var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-1);
+  width: fit-content;
+}
+
+.tracking-tab {
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-sm);
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+  text-transform: capitalize;
+}
+
+.tracking-tab:hover:not(.tracking-tab--active) {
+  background: var(--color-surface-alt);
+  color: var(--color-text);
+}
+
+.tracking-tab--active {
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 2px 8px var(--color-primary-glow);
+}
+
+/* ── Tracking List ──────────────────────────────────────────── */
+.tracking-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* ── Today Card ─────────────────────────────────────────────── */
+.today-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+              opacity var(--transition-base);
+}
+
+.today-card:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-card);
+}
+
+.today-card--done {
+  opacity: 0.75;
+  background: rgba(52, 211, 153, 0.05);
+  border-color: rgba(52, 211, 153, 0.3);
+}
+
+.today-card--done .today-card__title {
+  text-decoration: line-through;
+  color: var(--color-text-muted);
+}
+
+/* ── Card Left ──────────────────────────────────────────────── */
+.today-card__left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex: 1;
+  min-width: 0; /* allow text truncation */
+}
+
+.today-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.today-card__info {
+  min-width: 0;
+}
+
+.today-card__title {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color var(--transition-fast), text-decoration var(--transition-fast);
+}
+
+.today-card__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-xs);
+}
+
+.today-card__category { font-weight: 600; text-transform: capitalize; }
+.today-card__dot      { color: var(--color-text-muted); }
+.today-card__freq     { color: var(--color-text-muted); text-transform: capitalize; }
+
+/* ── Toggle Button ──────────────────────────────────────────── */
+.toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid transparent;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+  min-width: 110px;
+}
+
+.toggle-btn--pending {
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 2px 8px var(--color-primary-glow);
+}
+
+.toggle-btn--pending:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+  transform: scale(1.03);
+}
+
+.toggle-btn--done {
+  background: rgba(52, 211, 153, 0.15);
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.4);
+}
+
+.toggle-btn--done:hover:not(:disabled) {
+  background: rgba(248, 113, 113, 0.1);
+  color: var(--color-error);
+  border-color: rgba(248, 113, 113, 0.3);
+}
+
+.toggle-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── Tracking Empty ─────────────────────────────────────────── */
+.tracking-empty {
+  text-align: center;
+  padding: var(--space-10);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-base);
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .tracking-main      { padding: var(--space-4); }
+  .stats-bar__counts  { flex-wrap: wrap; }
+  .today-card         { flex-direction: column; align-items: flex-start; }
+  .toggle-btn         { width: 100%; }
+  .tracking-tabs      { width: 100%; }
+  .tracking-tab       { flex: 1; text-align: center; }
+}
